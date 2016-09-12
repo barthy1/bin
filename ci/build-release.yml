@@ -1,13 +1,9 @@
 ---
 platform: linux
 
-image: docker:///ubuntu
-
 inputs:
 - name: bin
 - name: linux-binary
-- name: darwin-binary
-- name: windows-binary
 - name: version
 
 outputs:
