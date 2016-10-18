@@ -22,16 +22,21 @@ if [ -z "$concourse" ]; then
 fi
 
 $concourse web \
+  --basic-auth-username myuser \
+  --basic-auth-password mypass \
   --development-mode \
   --session-signing-key $session_key \
   --tsa-bind-port 2223 \
   --tsa-host-key $tsa_key \
+  --postgres-data-source postgres://root:password@127.0.0.1/concourse \
+  --external-url https://140.211.168.98:8080 \
   --tsa-authorized-keys ${worker_key}.pub &
 
 trap "kill $!" 0
 
 sudo $concourse worker \
   --work-dir $workdir \
+  --garden-mtu 1450 \
   --tsa-port 2223 \
   --tsa-public-key ${tsa_key}.pub \
   --tsa-worker-private-key $worker_key \
