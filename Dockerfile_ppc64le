@@ -26,7 +26,7 @@ RUN apt-get update && \
       cd /tmp && curl http://www.netfilter.org/projects/iptables/files/iptables-1.4.21.tar.bz2 | tar jxf - && \
       cd iptables-1.4.21 && \
         mkdir /opt/static-assets/iptables && \
-        ./configure --prefix=/opt/static-assets/iptables --enable-static --disable-shared && \
+        ./configure --prefix=/opt/static-assets/iptables --enable-static --disable-shared --build=powerpc64le-linux-gnu && \
         make && \
         make install && \
       cd .. && \
