@@ -4,7 +4,7 @@ set -eu
 
 rm -rf resources
 mkdir resources
-cp -r $1 resources
+cp -r ${1}/* resources
 sudo docker build -t concourse_bin -f Dockerfile_ppc64le .
 sudo docker build -t concourse_res -f Dockerfile_build .
 rm -rf ${PWD}/artifacts

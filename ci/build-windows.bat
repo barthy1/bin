@@ -5,6 +5,9 @@ set PATH=%CD%\gopath\bin;%PATH%
 
 set /p FinalVersion=<final-version\version
 
+mkdir cli-artifacts
+move fly-rc/fly_* cli-artifacts
+
 go get github.com/jteeuwen/go-bindata
 
 go build -o go-bindata.exe github.com/jteeuwen/go-bindata/go-bindata
