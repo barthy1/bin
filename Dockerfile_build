@@ -1,0 +1,8 @@
+FROM concourse_bin
+ADD scripts/build_for_power.sh /tmp/build_for_power.sh
+RUN cd /tmp && /tmp/build_for_power.sh
+#ADD ci/build-cli-artifacts /tmp/build-cli-artifacts
+#RUN cd /tmp && /tmp/build-cli-artifacts
+ADD ci/build-linux /tmp/build-linux
+ADD resources /tmp/resources
+RUN cd /tmp && /tmp/build-linux

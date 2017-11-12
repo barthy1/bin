@@ -56,6 +56,13 @@ pushd concourse/
 
   mkdir -p $ASSETS_DIR/resources
 
+  rm -rf blobs/resources/*
+  for resource in /tmp/resources/*; do
+  resource_version="$(sha1sum $resource | awk '{print $1}')"
+  resource_name="$(basename $resource | sed -e 's/-resource.tar.gz//')"
+  cp -L "$resource" blobs/resources/$resource_name-resource-$resource_version.tar.gz
+  done
+
   for resource in blobs/resources/*-resource*.tar.gz; do
     resource_name="$(basename $resource | sed -e 's/-resource-.*.tar.gz//')"
     resource_version="$(sha1sum $resource | awk '{print $1}')"
