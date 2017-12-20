@@ -19,4 +19,4 @@ git checkout ppc64le_main
 #git clone --recursive https://github.com/vito/houdini /tmp/houdini
 
 cd /tmp
-sh -c 'echo "3.6.1" > final-version/version'
+sh -c 'echo "3.8.0" > final-version/version'
