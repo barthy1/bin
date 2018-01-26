@@ -2,15 +2,17 @@
 
 set -e -u -x
 
-export GOPATH=/tmp/gopath
+export GOROOT=/usr/local/go
 mkdir final-version
 mkdir fly-rc
 echo "">fly-rc/fly_something
 git clone --recursive https://github.com/barthy1/bin -b ppc64le_main /tmp/gopath/src/github.com/concourse/bin
-git clone --recursive https://github.com/cloudfoundry/garden-runc-release -b v1.9.0 /tmp/garden-runc-release
+git clone --recursive https://github.com/barthy1/garden-runc-release -b ppc64le_1.9.0 /tmp/garden-runc-release
 cd /tmp/garden-runc-release
+export GOPATH=$PWD
 #git reset --hard 7d473a79f6b1bcbf147c1d8e0b9c33cdee1bc0a1
 git submodule update
+go get golang.org/x/sys/unix
 git clone --recursive https://github.com/concourse/concourse -b master /tmp/concourse
 cd /tmp/concourse/src/github.com/concourse/bin
 git remote add ppc64le https://github.com/barthy1/bin
